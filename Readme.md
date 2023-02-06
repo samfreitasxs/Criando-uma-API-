@@ -25,10 +25,10 @@ Este é um projeto desenvolvido para aprimorar o desenvolvimento.
 
 ## Próximos passos:
     
-* Consumir atraves de um app
-* Aprimorar listagem
-* Implementar testes unitarios
-
+* Consumir atraves de um app;
+* Aprimorar listagem;
+* Implementar testes unitarios;
+^ Implementar testes de Back-End;
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
