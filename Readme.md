@@ -27,6 +27,7 @@ Este é um projeto desenvolvido para aprimorar o desenvolvimento.
     
 * Consumir atraves de um app
 * Aprimorar listagem
+* Implementar testes unitarios
 
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
