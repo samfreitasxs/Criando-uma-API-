@@ -1,22 +1,42 @@
+// index.js
 const express = require('express');
-const server = express(); 
-//Servidor recebendo express
-const filmes = require ('./src/data/filmes.json');
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+const cors = require('cors');
+const filmesController = require('./src/controllers/filmesController');
+const { validationResult } = require('express-validator');
+const errorHandler = require('./src/middleware/errorHandler');
 
-server.get('/filmes', (req,res) => {
-    return res.json({filmes})
+const server = express();
+
+// Middleware para habilitar CORS apenas para origens confiáveis
+const corsOptions = {
+  origin: 'http://suaorigemconfiavel.com',
+  optionsSuccessStatus: 200,
+};
+server.use(cors(corsOptions));
+
+// Configuração do Swagger
+const options = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'Filmes API',
+      version: '1.0.0',
+    },
+  },
+  apis: ['./src/controllers/*.js'],
+};
+const specs = swaggerJsdoc(options);
+server.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+
+// Rota para obter filmes
+server.get('/filmes', filmesController.validarCampos, filmesController.obterFilmes);
+
+// Middleware de tratamento de erros
+server.use(errorHandler);
+
+const PORT = process.env.PORT || 3333;
+server.listen(PORT, () => {
+  console.log(`Servidor está funcionando na porta ${PORT}`);
 });
-//'/'toda vez que passar barra esta acessando todos os dados da API
-// req: requisicao res: resposta do backend
-
-
-server.listen(3333, () => {
-    console.log('Servidor esta funcionando...')
-});
-//Listen escutar uma porta
-//Testando para ver se o servidor esta funcionando .log
-//Iniciar a API node index.js 
-//* node index.js nome do projeto
-//Colcar no arquivo package.json
-// start": "nodemon ./index.js",
-//yarn start executar o servidor 
