@@ -1,36 +1,31 @@
-# API de teste
+# Criacao de API Node.js
+Descrição
+Este é um projeto de backend para uma aplicação de filmes construída com Node.js e Express. A API fornece endpoints para obter informações sobre filmes, e a estrutura do código é organizada seguindo as melhores práticas de desenvolvimento.
 
-Projeto API de teste
+Funcionalidades
+Obter Filmes: Endpoint para obter informações sobre filmes.
+Documentação Swagger: Uma documentação Swagger está disponível em /api-docs para facilitar o entendimento dos endpoints.
+Configuração e Uso
+Instalação de Dependências:
 
-Este é um projeto desenvolvido para aprimorar o desenvolvimento.
+bash
+Copy code
+npm install
+Iniciar o Servidor:
 
+bash
+Copy code
+npm start
+Endpoint de Filmes:
 
-    
-## Desenvolvimento:
-- [x] Splah Screen
-- [X] Tela Home,
-- [ ] Tela de Cadastro,
-- [ ] Gerência de estado com SetState
-- [ ] Gerência de estado com MobX
+Para obter informações sobre filmes: GET /filmes
+Documentação Swagger:
 
-## Funções da API:
-* Consumir dados;
-* Apresentar filmes listados;
-
-## Aprendizado:
-* API
-* Back-End
-* Server.listen
-* server.get
-
-## Próximos passos:
-    
-* Consumir atraves de um app;
-* Aprimorar listagem;
-* Implementar testes unitarios;
-* Implementar testes de Back-End;
-
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Acesse a documentação Swagger em: http://localhost:3333/api-docs
+Estrutura do Projeto
+src/controllers: Lógica do controlador para cada rota.
+src/middleware: Middlewares, incluindo o tratamento de erros.
+src/data: Dados de exemplo (filmes.json).
+index.js: Ponto de entrada do servidor.
+Contribuição
+Contribuições são bem-vindas! Sinta-se à vontade para abrir problemas ou enviar pull requests.
