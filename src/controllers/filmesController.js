@@ -26,10 +26,16 @@ const obterFilmes = (req, res) => {
  *           schema:
  *             type: object
  *             properties:
- *               titulo:
+ *               id:
  *                 type: string
- *               diretor:
+ *               nome:
  *                 type: string
+ *               foto:
+ *                 type: string
+ *               descricao:
+ *                  type: string
+ *               elenco:
+ *                  type: string
  *     responses:
  *       201:
  *         description: Filme adicionado com sucesso.
