@@ -1,4 +1,3 @@
-// src/controllers/filmesController.js
 const { validationResult } = require('express-validator');
 const filmes = require('../data/filmes.json');
 
@@ -11,14 +10,39 @@ const filmes = require('../data/filmes.json');
  *       200:
  *         description: Sucesso. Retorna um objeto com a lista de filmes.
  */
-  
 const obterFilmes = (req, res) => {
   return res.json({ filmes });
 };
 
-module.exports = {
-    obterFilmes,
-  };
+/**
+ * @swagger
+ * /filmes:
+ *   post:
+ *     summary: Adiciona um novo filme.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               titulo:
+ *                 type: string
+ *               diretor:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Filme adicionado com sucesso.
+ */
+const adicionarFilme = (req, res) => {
+  const { titulo, diretor } = req.body;
+
+  // Adicione a lógica para adicionar o filme à sua fonte de dados (por exemplo, um banco de dados)
+  // Por enquanto, apenas simularemos que o filme foi adicionado à lista existente
+  filmes.push({ titulo, diretor });
+
+  return res.status(201).json({ mensagem: 'Filme adicionado com sucesso' });
+};
 
 const validarCampos = (req, res, next) => {
   const errors = validationResult(req);
@@ -30,5 +54,6 @@ const validarCampos = (req, res, next) => {
 
 module.exports = {
   obterFilmes,
+  adicionarFilme,
   validarCampos,
 };

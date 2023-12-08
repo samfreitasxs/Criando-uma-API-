@@ -2,21 +2,13 @@
 const express = require('express');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
-const cors = require('cors');
+const bodyParser = require('body-parser'); // Adicionando o body-parser para lidar com o corpo da solicitação
 const filmesController = require('./src/controllers/filmesController');
-const { validationResult } = require('express-validator');
 const errorHandler = require('./src/middleware/errorHandler');
 
 const server = express();
 
-// Middleware para habilitar CORS apenas para origens confiáveis
-const corsOptions = {
-  origin: 'http://suaorigemconfiavel.com',
-  optionsSuccessStatus: 200,
-};
-server.use(cors(corsOptions));
-
-// Configuração do Swagger
+// Configuração do Swagger (mantenha o mesmo)
 const options = {
   definition: {
     openapi: '3.0.0',
@@ -30,10 +22,36 @@ const options = {
 const specs = swaggerJsdoc(options);
 server.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
-// Rota para obter filmes
-server.get('/filmes', filmesController.validarCampos, filmesController.obterFilmes);
+// Adicionando o body-parser para processar o corpo da solicitação
+server.use(bodyParser.json());
 
-// Middleware de tratamento de erros
+// Rota para obter filmes
+server.get('/filmes', filmesController.obterFilmes);
+
+// Rota para adicionar um novo filme (POST)
+/**
+ * @swagger
+ * /filmes:
+ *   post:
+ *     summary: Adiciona um novo filme.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               titulo:
+ *                 type: string
+ *               diretor:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Filme adicionado com sucesso.
+ */
+server.post('/filmes', filmesController.validarCampos, filmesController.adicionarFilme);
+
+// Middleware de tratamento de erros (mantenha o mesmo)
 server.use(errorHandler);
 
 const PORT = process.env.PORT || 3333;
