@@ -1,8 +1,7 @@
-// index.js
 const express = require('express');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
-const bodyParser = require('body-parser'); // Adicionando o body-parser para lidar com o corpo da solicitação
+const bodyParser = require('body-parser');
 const filmesController = require('./src/controllers/filmesController');
 const errorHandler = require('./src/middleware/errorHandler');
 
@@ -25,8 +24,13 @@ server.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 // Adicionando o body-parser para processar o corpo da solicitação
 server.use(bodyParser.json());
 
+// Adicione um array temporário para armazenar os filmes (substitua por seu método de persistência real)
+const filmes = [];
+
 // Rota para obter filmes
-server.get('/filmes', filmesController.obterFilmes);
+server.get('/filmes', (req, res) => {
+  return res.json({ filmes });
+});
 
 // Rota para adicionar um novo filme (POST)
 /**
@@ -41,15 +45,25 @@ server.get('/filmes', filmesController.obterFilmes);
  *           schema:
  *             type: object
  *             properties:
- *               titulo:
+ *               id:
  *                 type: string
- *               diretor:
+ *               nome:
  *                 type: string
+ *               foto:
+ *                 type: string
+ *               descricao:
+ *                  type: string
+ *               elenco:
+ *                  type: string
  *     responses:
  *       201:
  *         description: Filme adicionado com sucesso.
  */
-server.post('/filmes', filmesController.validarCampos, filmesController.adicionarFilme);
+server.post('/filmes', filmesController.validarCampos, (req, res) => {
+  const novoFilme = req.body;
+  filmes.push(novoFilme);
+  return res.status(201).json({ mensagem: 'Filme adicionado com sucesso' });
+});
 
 // Middleware de tratamento de erros (mantenha o mesmo)
 server.use(errorHandler);
