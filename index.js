@@ -7,10 +7,10 @@ server.get('/filmes', (req,res) => {
     return res.json({filmes})
 });
 //'/'toda vez que passar barra esta acessando todos os dados da API
-// req: requeisicao res: resposta do backend
+// req: requisicao res: resposta do backend
 
 
-server.listen(3000, () => {
+server.listen(3333, () => {
     console.log('Servidor esta funcionando...')
 });
 //Listen escutar uma porta
