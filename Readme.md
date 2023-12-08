@@ -3,10 +3,10 @@
 ##Descrição
 Este é um projeto de backend para uma aplicação de filmes construída com Node.js e Express. A API fornece endpoints para obter informações sobre filmes, e a estrutura do código é organizada seguindo as melhores práticas de desenvolvimento.
 
-##Funcionalidades
+## Funcionalidades
 **Obter Filmes**: Endpoint para obter informações sobre filmes.
 **Documentação Swagger:** Uma documentação Swagger está disponível em **/api-docs** para facilitar o entendimento dos endpoints.
-##Configuração e Uso
+## Configuração e Uso
 **Instalação de Dependências:**
 
 `npm install
