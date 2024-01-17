@@ -12,7 +12,6 @@ Este é um projeto de backend para uma aplicação de filmes construída com Nod
 `npm install
 `
 
-
 **Iniciar o Servidor:**
 
 `npm start
