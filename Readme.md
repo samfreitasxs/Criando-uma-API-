@@ -19,7 +19,8 @@ Este é um projeto de backend para uma aplicação de filmes construída com Nod
 
 `npm start
 `
-Caso de erro execute o:
+
+- Caso de erro execute o:
 
 `npm install -g nodemon
 `
