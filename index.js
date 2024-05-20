@@ -65,7 +65,7 @@ server.post('/filmes', filmesController.validarCampos, (req, res) => {
   return res.status(201).json({ mensagem: 'Filme adicionado com sucesso' });
 });
 
-// Middleware de tratamento de erros (mantenha o mesmo)
+// Middleware de tratamento de erros
 server.use(errorHandler);
 
 const PORT = process.env.PORT || 3333;
